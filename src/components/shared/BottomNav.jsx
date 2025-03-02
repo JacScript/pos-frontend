@@ -3,12 +3,16 @@ import { FaHome } from "react-icons/fa";
 import { MdOutlineReorder, MdTableBar } from "react-icons/md";
 import { CiCircleMore } from "react-icons/ci";
 import { BiSolidDish } from "react-icons/bi";
+import {useHistory} from 'react-router-dom'
 
 const BottomNav = () => {
+  const history = useHistory();
+
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-[#262626] h-16 flex justify-around items-center px-2">
       {/* Home Button */}
       <button
+      onClick={() => history.push('/')}
         aria-label="Home"
         className="flex justify-center items-center bg-[#343434] max-w-[200px] px-4 py-2 rounded-[20px] text-[#f5f5f5]"
       >
@@ -18,6 +22,7 @@ const BottomNav = () => {
 
       {/* Orders Button */}
       <button
+      onClick={() => history.push('/orders')}
         aria-label="Orders"
         className="flex justify-center items-center text-[#ababab] max-w-[200px] px-4 py-2"
       >
@@ -27,6 +32,7 @@ const BottomNav = () => {
 
       {/* Tables Button */}
       <button
+      onClick={() => history.push('/tables')}
         aria-label="Tables"
         className="flex justify-center items-center text-[#ababab] max-w-[200px] px-4 py-2"
       >
@@ -36,6 +42,7 @@ const BottomNav = () => {
 
       {/* Others Button */}
       <button
+      
         aria-label="Others"
         className="flex justify-center items-center text-[#ababab] max-w-[200px] px-4 py-2"
       >

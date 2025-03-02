@@ -19,8 +19,8 @@ const OrderList = () => {
                 <h1 className="text-[#f6b100] text-semibold border border-[#f6b100] p-1 rounded-lg">Table No: 1</h1>
             </div>
 
-        <div className="flex flex-col items-start gap-2">
-          <p className="text-green-600 px-4">
+        <div className="flex flex-col items-end gap-2">
+          <p className="text-green-600 ">
             <FaCheckDouble className="inline mr-2" />
             Ready
           </p>

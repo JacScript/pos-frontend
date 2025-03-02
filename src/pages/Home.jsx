@@ -1,5 +1,5 @@
 import React from "react";
-import ButtomNav from "../components/shared/BottonNav";
+import ButtomNav from "../components/shared/BottomNav";
 import Greetings from "../components/home/Greetings";
 import {BsCashCoin} from 'react-icons/bs'
 import { GrInProgress } from 'react-icons/gr'
