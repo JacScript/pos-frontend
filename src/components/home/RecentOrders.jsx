@@ -1,26 +1,39 @@
 import React from 'react'
+import { FaSearch } from 'react-icons/fa'
+import OrderList from './OrderList'
 
 const RecentOrders = () => {
   return (
 
     <div className='px-8 mt-6'>
-        <div className='bg-[#050505] w-full h-[450px] rounded-lg'></div>
-        {/* <h2 className="text-[#f5f5f5] text-2xl font-semibold tracking-wide">
-          Recent Orders
-        </h2>
-        <div className="flex gap-4">
-          <div className="flex items-center bg-[#242424] w-[100px] h-[100px] rounded-full">
-            <img src="https://via.placeholder.com/100" alt="order" />
-          </div>
-          <div>
-            <h3 className="text-[#ababab] text-sm font-semibold tracking-wide">
-              Order #123456
-            </h3>
-            <p className="text-[#ababab] text-xs">
-              Completed on 2022-01-01
-            </p>
-          </div>
-        </div> */}
+       <div className='bg-[#050505] w-full h-[450px] rounded-lg'>
+           <div className='flex justify-between items-center px-6 py-4'>
+                <h1 className='text-base text-[#f5f5f5] font-semibold tracking-wide'>Recent Orders</h1>
+                <a href='#' className='text-[#025cca] text-sm'>View All</a>
+           </div>
+
+             {/* SEARCH */}
+                 <div className='flex items-center gap-4 bg-[#1f1f1f] rounded-[15px] px-5 py-2 mx-6'>
+                   <FaSearch className='text-[#f5f5f5]'/>
+                   <input
+                    type="text"
+                    placeholder="Search recent order"
+                    className='bg-[#1f1f1f] outline-none text-[#f5f5f5]'
+                   />
+                   
+                 </div>
+
+                 {/* Order List */}
+                 <div className='px-6 mt-4 overflow-y-scroll h-[300px] scrollbar-hide'>
+                 <OrderList />
+                 <OrderList />
+                 <OrderList />
+                 <OrderList />
+                 <OrderList />
+                 <OrderList />
+                 <OrderList />
+                 </div>
+       </div>
     </div>
   )
 }

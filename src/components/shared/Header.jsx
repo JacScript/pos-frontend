@@ -2,7 +2,7 @@ import React from 'react'
 import { FaSearch} from 'react-icons/fa';
 import { FaUserCircle } from 'react-icons/fa';
 import { FaBell } from 'react-icons/fa';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/images/logo.png'
 
 const Header = () => {
   return (
