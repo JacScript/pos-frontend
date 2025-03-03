@@ -3,12 +3,18 @@ import { FaSearch} from 'react-icons/fa';
 import { FaUserCircle } from 'react-icons/fa';
 import { FaBell } from 'react-icons/fa';
 import logo from '../../assets/images/logo.png'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Header = () => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/');
+  }
   return (
     <header className='flex justify-between items-center py-4 px-8 bg-[#1a1a1a]'>
         {/* LOGO */}
-        <div className='flex items-center gap-2'>
+        <div onClick={handleClick} className='flex items-center cursor-pointer gap-2'>
             <img src={logo} alt="logo" className='h-8 w-8' />
             <h1 className='text-lg font-semibold text-[#f5f5f5]'>MILES</h1>
         </div>

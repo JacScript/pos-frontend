@@ -6,6 +6,7 @@ import Header from './components/shared/Header.jsx'
 import Orders from './pages/Orders.jsx'
 import Tables from './pages/Tables.jsx'
 import Menu from './pages/Menu.jsx'
+import NotFound from './pages/NotFound.jsx'
 function App() {
 
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/orders" component={Orders} />
           <Route path="/tables" component={Tables} />
           <Route path="/menu" component={Menu} />
-          <Route path="*" component={<div>Not Found</div>} />
+          <Route  component={NotFound} />
         </Switch>
       </BrowserRouter>
     </>
