@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import { GrRadialSelected } from "react-icons/gr";
 import { menus } from "../../constants";
+import { FaShoppingCart } from "react-icons/fa";
 
 const MenuContainer = () => {
   const [selected, setSelected] = useState(menus[0]);
-  const [itemCount, setItemCount] = useState(0)
+  const [itemCount, setItemCount] = useState(0);
   const [itemId, setItemId] = useState(0);
-
 
   const increment = (id) => {
     setItemId(id);
-    if(itemCount >= 6) return;
-      setItemCount((prev) => prev + 1);
-  }
+    if (itemCount >= 6) return;
+    setItemCount((prev) => prev + 1);
+  };
 
   const decrement = (id) => {
     setItemId(id);
-    if(itemCount <= 0) return;
+    if (itemCount <= 0) return;
     setItemCount((prev) => prev - 1);
-  }
+  };
 
   return (
     <>
@@ -30,10 +30,10 @@ const MenuContainer = () => {
               className="flex flex-col items-start justify-between p-4 rounded-lg cursor-pointer h-[100px]"
               style={{ backgroundColor: menu.bgColor }}
               onClick={() => {
-                setSelected(menu)
+                setSelected(menu);
                 setItemId(0);
                 setItemCount(0);
-            }}
+              }}
             >
               <div className="flex items-center justify-between w-full">
                 <h1 className="text-[#f5f5f5] text-lg font-semibold">
@@ -60,9 +60,14 @@ const MenuContainer = () => {
               key={menu.id}
               className="flex flex-col items-start justify-between p-4 rounded-lg cursor-pointer h-[140px] hover:bg-[#2a2a2a] bg-[#050505]"
             >
-              <h1 className="text-[#f5f5f5] text-lg font-semibold">
-                {menu.icon} {menu.name}
-              </h1>
+              <div className="flex justify-between items-start w-full ">
+                <h1 className="text-[#f5f5f5] text-lg font-semibold">
+                  {menu.icon} {menu.name}
+                </h1>
+                <button className="bg-[#2e4a40] text-[#2aca3a] p-2 rounded-lg">
+                  <FaShoppingCart size={20} />
+                </button>
+              </div>
               <div className="flex items-center justify-between w-full">
                 <p className="text-[#ababab] text-xl font-bold">
                   Tsh {menu.price}
@@ -74,7 +79,9 @@ const MenuContainer = () => {
                   >
                     &minus;
                   </button>
-                  <span className="text-white">{menu.id === itemId ? itemCount : "0" }</span>
+                  <span className="text-white">
+                    {menu.id === itemId ? itemCount : "0"}
+                  </span>
                   <button
                     onClick={() => increment(menu.id)}
                     className="text-yellow-500 text-2xl font-bold"

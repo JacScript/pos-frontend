@@ -10,7 +10,6 @@
 //     history.push('/menu')
 //   }
 
-
 //   return (
 //     <div  onClick={handleClick} className="w-[300px] bg-[#050505] p-4 rounded-lg mb-4 hover:bg-[#1f1f1f] cursor-pointer">
 //       <div className="flex justify-between items-center px-1">
@@ -41,20 +40,24 @@
 // export default TableCard;
 
 import React from "react";
-import { getRandomBG } from "../../utils/index"; // Ensure correct import path
+import { getBgColor } from "../../utils/index"; // Ensure correct import path
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateTable } from "../../redux/slices/customerSlice";
 
 const TableCard = ({ name, initials, status, seats }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClick = (name) => {
     if (status === "booked") return;
+    dispatch(updateTable({ tableNo: name })); 
     history.push("/menu");
   };
 
   return (
     <div
-      onClick={handleClick}
+      onClick={() => handleClick(name)}
       className="w-[300px] bg-[#050505] p-4 rounded-lg mb-4 hover:bg-[#1f1f1f] cursor-pointer"
     >
       <div className="flex justify-between items-center px-1">
@@ -70,7 +73,10 @@ const TableCard = ({ name, initials, status, seats }) => {
         </p>
       </div>
       <div className="flex items-center justify-center my-4">
-        <h1 className={`${getRandomBG()} text-white rounded-full p-5 text-2xl`}>
+        <h1
+          className={` text-white rounded-full p-5 text-2xl`}
+          style={{ background: getBgColor() }}
+        >
           {initials}
         </h1>
       </div>
@@ -83,4 +89,3 @@ const TableCard = ({ name, initials, status, seats }) => {
 };
 
 export default TableCard;
-

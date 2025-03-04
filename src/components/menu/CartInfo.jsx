@@ -8,7 +8,7 @@ const CartInfo = () => {
     <h1 className="text-lg text-[#e4e4e4] font-semibold tracking-wide">
       Order Details
     </h1>
-    <div className="mt-4 overflow-y-scroll scrollbar-hide h-[380px]">
+    <div className="mt-4 overflow-y-scroll scrollbar-hide h-[280px]">
       <div className="bg-[#050505] rounded-lg p-3 mb-2 ">
         <div className="flex items-center justify-between">
           <h1 className="text-[#ababab] font-semibold tracking-wide tetx-md">
