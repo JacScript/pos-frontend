@@ -3,6 +3,9 @@ import BottomNav from "../components/shared/BottomNav";
 import BackButton from "../components/shared/BackButton";
 import { MdRestaurantMenu } from "react-icons/md";
 import MenuContainer from "../components/menu/MenuContainer";
+import CustomerInfo from "../components/menu/CustomerInfo";
+import CartInfo from "../components/menu/CartInfo";
+import BillInfo from "../components/menu/BillInfo";
 
 const Menu = () => {
   return (
@@ -37,19 +40,21 @@ const Menu = () => {
       </div>
 
       {/* right-div */}
-      <div className="flex-[2] bg-[#1a1a1a] mt-4 mr-3 h-[780px] rounded-lg pt-2"></div>
-      {/* Customer info */}
-      <div className="flex items-center justify-between px-4 py-3">
-        <div className="flex flex-col items-start">
-          <h1 className="text-md text-[#f5f5f5] font-semibold tracking-wide">
-            Customer Name
-          </h1>
-          <p className="text-xs text-[#ababab] font-medium mt-1">Table No: 3</p>
-          <p className="text-xs text-[#ababab] font-medium mt-2">January 19, 2025 05:34</p>
-        </div>
+      <div className="flex-[1] bg-[#1a1a1a] mt-4 mr-3 h-[780px] rounded-lg pt-2">
+        {/* Customer info */}
+        <CustomerInfo/>
+
+        <hr className="border-[#2a2a2a] border-t-2" />
+        {/* Cart Items */}
+
+        <CartInfo/>
+        <hr className="border-[#2a2a2a] border-t-2" />
+
+
+        {/* Billing */}
+
+        <BillInfo/>
       </div>
-      {/* Cart Items */}
-      {/* Billing */}
 
       <BottomNav />
     </section>
