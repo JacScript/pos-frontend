@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { GrRadialSelected } from "react-icons/gr";
 import { menus } from "../../constants";
 import { FaShoppingCart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addItems } from "../../redux/slices/cartSlice";
 
 const MenuContainer = () => {
   const [selected, setSelected] = useState(menus[0]);
   const [itemCount, setItemCount] = useState(0);
   const [itemId, setItemId] = useState(0);
+  const dispatch = useDispatch();
 
   const increment = (id) => {
     setItemId(id);
@@ -19,6 +22,34 @@ const MenuContainer = () => {
     if (itemCount <= 0) return;
     setItemCount((prev) => prev - 1);
   };
+
+  // const handleAddToCart = (item) => {
+  //   if(itemCount === 0) return;
+     
+  //   const {name, price} = item;
+  //   const newObj = {id: new Date(), name, pricePerQuantity: price, quantity: itemCount, price: price * itemCount }; 
+  //   dispatch(addItems(newObj));
+  //   setItemCount(0);
+  //  }; 
+
+
+  const handleAddToCart = (item) => {
+    if (itemCount <= 0) return; // Prevent invalid quantity
+
+    const { name, price } = item;
+    const newObj = {
+        id: Date.now(), // Generates a unique numeric ID
+        name,
+        pricePerQuantity: price,
+        quantity: itemCount,
+        price: price * itemCount
+    }; 
+
+    dispatch(addItems(newObj)); // Ensure this matches your Redux action name
+    setItemCount(0);
+};
+
+
 
   return (
     <>
@@ -54,36 +85,38 @@ const MenuContainer = () => {
       <hr className="border-[#2a2a2a] border-t-2 mt-4" />
 
       <div className="grid grid-cols-4 gap-4 px-10 py-4 w-[100%]">
-        {selected?.items?.map((menu) => {
+        {selected?.items?.map((item) => {
           return (
             <div
-              key={menu.id}
+              key={item.id}
               className="flex flex-col items-start justify-between p-4 rounded-lg cursor-pointer h-[140px] hover:bg-[#2a2a2a] bg-[#050505]"
             >
               <div className="flex justify-between items-start w-full ">
                 <h1 className="text-[#f5f5f5] text-lg font-semibold">
-                  {menu.icon} {menu.name}
+                  {item.icon} {item.name}
                 </h1>
-                <button className="bg-[#2e4a40] text-[#2aca3a] p-2 rounded-lg">
+                <button 
+                 onClick={() => handleAddToCart(item)}
+                className="bg-[#2e4a40] text-[#2aca3a] p-2 rounded-lg">
                   <FaShoppingCart size={20} />
                 </button>
               </div>
               <div className="flex items-center justify-between w-full">
                 <p className="text-[#ababab] text-xl font-bold">
-                  Tsh {menu.price}
+                  Tsh {item.price}
                 </p>
                 <div className="flex items-center justify-between bg-[#1f1f1f] px-3  gap-6 py-1 rounded-lg">
                   <button
-                    onClick={() => decrement(menu.id)}
+                    onClick={() => decrement(item.id)}
                     className="text-yellow-500 text-2xl font-bold"
                   >
                     &minus;
                   </button>
                   <span className="text-white">
-                    {menu.id === itemId ? itemCount : "0"}
+                    {item.id === itemId ? itemCount : "0"}
                   </span>
                   <button
-                    onClick={() => increment(menu.id)}
+                    onClick={() => increment(item.id)}
                     className="text-yellow-500 text-2xl font-bold"
                   >
                     &#43;

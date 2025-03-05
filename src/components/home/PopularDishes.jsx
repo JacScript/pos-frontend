@@ -14,15 +14,15 @@ const PopularDishes = () => {
           </a>
         </div>
 
-        <div className="overflow-y-scroll h-[680px] scrollbar-hide">
+        <div className="overflow-y-scroll h-[680px] scrollbar-hide max-md:mb-20">
             {
-                popularDishes.map((dish) => (
-                    <div key={dish.id} className="flex items-center gap-4 mx-6 px-6 py-3 border-b border-[#1f1f1f]">
-                        <div className="flex items-center gap-4">
+                popularDishes?.map((dish) => (
+                    <div key={dish.id} className="flex items-center gap-4 max-md:mx-2 mx-6 px-6 py-3 max-md:py-2 border-b border-[#1f1f1f]">
+                        <div className="flex items-center gap-4 max-md:gap-[10px]">
                             <h1 className="text-[#f5f5f5] font-bold text-xl  mr-5">{dish.id < 10  ? `0${dish.id}` : dish.id}</h1>
-                            <img src={dish.image} alt={dish.name} className="w-12 h-12 object-cover rounded-lg"/>
+                            <img src={dish.image} alt={dish.name} className="w-12 h-12 max-md:w-10 max-md:h-10 object-cover rounded-lg"/>
                             <div>
-                                <h1 className="text-[#f5f5f5] text-lg font-semibold tracking-wide">{dish.name}</h1>
+                                <h1 className="text-[#f5f5f5] text-lg  max-md:base font-semibold tracking-wide">{dish.name}</h1>
                                 <p className="text-[#ababab] text-sm"><span>Orders: </span>{dish.numberOfOrders}</p>
                             </div>
                         </div>

@@ -22,7 +22,7 @@ const Greetings = () => {
   return (
     <div className="flex justify-between items-center px-8 mt-5">
       <div>
-        <h1 className="text-[#f5f5f5] text-2xl mb-2 font-semibold tracking-wide">
+        <h1 className="text-[#f5f5f5] text-2xl max-md:text-base mb-2 font-semibold tracking-wide">
           Good Morning, Miles
         </h1>
         <p className="text-[#ababab] text-sm">
@@ -30,7 +30,7 @@ const Greetings = () => {
         </p>
       </div>
       <div>
-        <h1 className="text-[#f5f5f5] text-3xl font-bold tracking-wide w-[130px] mb-2">{formatTime(dateTime)}</h1>
+        <h1 className="text-[#f5f5f5] text-3xl max-md:text-lg max-md:font-semibold font-bold tracking-wide w-[130px] mb-2">{formatTime(dateTime)}</h1>
         <p className="text-[#ababab] text-sm">{formatDate(dateTime)}</p>
       </div>
     </div>
