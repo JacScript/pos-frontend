@@ -9,8 +9,10 @@ import PopularDishes from "../components/home/PopularDishes";
 
 const Home = () => {
   return (
-    <section className="bg-[#1f1f1f] h-[calc(100vh-5rem)] md:overflow-hidden scrollbar-hide flex  max-lg:flex-col gap-3">
+    <section className="bg-[#1f1f1f] max-md:min-h-screen lg:h-[calc(100vh-5rem)] md:overflow-hidden scrollbar-hide flex  max-lg:flex-col gap-3 "  >
       {/* left-div */}
+      {/* <div className="bg-[#1f1f1f] min-h-screen lg:h-[calc(100vh-5rem)] md:overflow-hidden scrollbar-hide flex  max-lg:flex-col gap-3 " > */}
+
       <div className="flex-[3] bg-[#1a1a1a]">
         <Greetings />
         <div className="flex items-center w-full gap-3 px-8 mt-8">
@@ -31,9 +33,11 @@ const Home = () => {
       </div>
 
       {/* right-div */}
-      <div className="flex-[2] bg-[#1a1a1a]">
+      <div className="flex-[2] bg-[#1a1a1a] h-full max-lg:mb-[80px]">
         <PopularDishes/>
       </div>
+      {/* </div> */}
+
       <ButtomNav />
     </section>
   );

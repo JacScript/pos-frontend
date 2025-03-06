@@ -24,7 +24,7 @@ const handleRemoveItem = (itemId) => {
 }
   return (
     <div className="px-4 py-2">
-      <h1 className="text-lg text-[#e4e4e4] font-semibold tracking-wide">
+      <h1 className="text-base text-[#e4e4e4] font-semibold tracking-wide">
         Order Details
       </h1>
       <div className="mt-4 overflow-y-scroll scrollbar-hide h-[280px]" ref={scrollRef}>

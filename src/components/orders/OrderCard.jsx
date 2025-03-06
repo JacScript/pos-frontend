@@ -3,9 +3,9 @@ import { FaCheckDouble, FaCircle } from "react-icons/fa";
 
 const OrderCard = () => {
   return (
-    <div className="w-[500px] bg-[#050505] p-4 rounded-lg mb-4">
+    <div className="sm:w-[500px]  lg:w-[500px]  bg-[#050505] p-4 rounded-lg mb-4">
       <div className="flex items-center gap-6 mb-3">
-        <button className="text-center p-3 bg-[#f6b100] text-xl fonr-bold rounded-lg">
+        <button className="text-center p-3 bg-[#f6b100] text-xl font-bold rounded-lg">
           AM
         </button>
         <div className="flex justify-between items-center w-[100%] ">

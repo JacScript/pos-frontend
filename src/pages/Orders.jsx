@@ -17,22 +17,22 @@ const Orders = () => {
         </h1>
         </div>
         <div className="flex items-center justify-around gap-4">
-          <button onClick={() => setStatus("all")} className={`text-[#ababab] text-lg px-4 py-2 ${status === "all" && "bg-[#383838]"} font-semibold rounded-lg`}>
+          <button onClick={() => setStatus("all")} className={`text-[#ababab] max-md:text-xs text-lg max-md:px-2 px-4 py-2 ${status === "all" && "bg-[#383838]"} font-semibold rounded-lg`}>
             All
           </button>
-          <button onClick={() => setStatus("progress")} className={`text-[#ababab] text-lg px-4 py-2 ${status === "progress" && "bg-[#383838]"} font-semibold rounded-lg`}>
+          <button onClick={() => setStatus("progress")} className={`text-[#ababab] max-md:text-xs text-lg px-4 max-md:px-2 py-2 ${status === "progress" && "bg-[#383838]"} font-semibold rounded-lg`}>
             In Progress
           </button>
-          <button onClick={() => setStatus("ready")} className={`text-[#ababab] text-lg px-4 py-2 ${status === "ready" && "bg-[#383838]"} font-semibold rounded-lg`}>
+          <button onClick={() => setStatus("ready")} className={`text-[#ababab] max-md:text-xs text-lg px-4 max-md:px-2 py-2 ${status === "ready" && "bg-[#383838]"} font-semibold rounded-lg`}>
             Ready
           </button>
-          <button onClick={() => setStatus("completed")} className={`text-[#ababab] text-lg px-4 py-2 ${status === "completed" && "bg-[#383838]"} font-semibold rounded-lg`}>
+          <button onClick={() => setStatus("completed")} className={`text-[#ababab] max-md:text-xs text-lg px-4 max-md:px-2 py-2 ${status === "completed" && "bg-[#383838]"} font-semibold rounded-lg`}>
             Complete
           </button>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-6 px-12 py-4 overflow-y-scroll h-[calc(80vh-5rem)] scrollbar-hide">
+      <div className="flex flex-wrap justify-center gap-6 px-12 py-4 overflow-y-scroll h-[calc(80vh-5rem)] scrollbar-hide">
         <OrderCard />
         <OrderCard />
         <OrderCard />

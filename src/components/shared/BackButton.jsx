@@ -28,7 +28,7 @@ const BackButton = () => {
   return (
     <button
       onClick={() => history.goBack()} 
-      className='bg-[#025cca] p-3 text-xl text-white rounded-full font-bold'
+      className='bg-[#025cca] p-3 text-xl text-white rounded-full font-bold max-sm:text-base max-md:p-1'
     >
       <IoArrowBackOutline />
     </button>

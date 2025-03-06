@@ -13,17 +13,17 @@ const BillInfo = () => {
 
   return (
     <>
-      <div className="flex items-center  justify-between px-5 mt-2">
-        <p className="text-xs text-[#ababab] font-medium mt-2">Item {cartInfo.length}</p>
+      <div className="flex items-center  justify-between px-5 mt-1">
+        <p className="text-xs text-[#ababab] font-medium mt-1">Item {cartInfo.length}</p>
         <h1 className="text-md font-bold text-[#f5f5f5]">Tsh {total.toFixed(2)} </h1>
       </div>
-      <div className="flex items-center  justify-between px-5 mt-2">
-        <p className="text-xs text-[#ababab] font-medium mt-2">Tax(5.25%)</p>
+      <div className="flex items-center  justify-between px-5 mt-1">
+        <p className="text-xs text-[#ababab] font-medium mt-1">Tax(5.25%)</p>
         <h1 className="text-md font-bold text-[#f5f5f5]">Tsh {tax.toFixed(2)}</h1>
       </div>
 
-      <div className="flex items-center  justify-between px-5 mt-2">
-        <p className="text-xs text-[#ababab] font-medium mt-2">Total With tax </p>
+      <div className="flex items-center  justify-between px-5 mt-1">
+        <p className="text-xs text-[#ababab] font-medium mt-1">Total With tax </p>
         <h1 className="text-md font-bold text-[#f5f5f5]">Tsh {totalPriceWithTax.toFixed()}</h1>
       </div>
 

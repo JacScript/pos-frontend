@@ -14,7 +14,7 @@ const PopularDishes = () => {
           </a>
         </div>
 
-        <div className="overflow-y-scroll h-[680px] scrollbar-hide max-md:mb-20">
+        <div className="overflow-y-scroll h-[550px] scrollbar-hide ">
             {
                 popularDishes?.map((dish) => (
                     <div key={dish.id} className="flex items-center gap-4 max-md:mx-2 mx-6 px-6 py-3 max-md:py-2 border-b border-[#1f1f1f]">

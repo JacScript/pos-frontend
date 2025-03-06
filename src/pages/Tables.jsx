@@ -22,7 +22,7 @@ const Tables = () => {
             onClick={() => setStatus("all")}
             className={`text-[#ababab] text-lg px-4 py-2 ${
               status === "all" && "bg-[#383838]"
-            } font-semibold rounded-lg`}
+            } font-semibold rounded-lg max-md:text-xs max-lg:text-base`}
           >
             All
           </button>
@@ -30,13 +30,13 @@ const Tables = () => {
             onClick={() => setStatus("booked")}
             className={`text-[#ababab] text-lg px-4 py-2 ${
               status === "booked" && "bg-[#383838]"
-            } font-semibold rounded-lg`}
+            } font-semibold rounded-lg max-md:text-xs max-lg:text-base`}
           >
             Booked
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap gap-4 p-10 overflow-y-scroll h-[calc(80vh-5rem)] scrollbar-hide">
+      <div className="flex flex-wrap gap-4 p-10 justify-center overflow-y-scroll h-[calc(80vh-5rem)] scrollbar-hide">
         {
           tables.map((table) => {
             return (

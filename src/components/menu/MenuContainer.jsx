@@ -53,12 +53,12 @@ const MenuContainer = () => {
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-4 px-10 py-4 w-[100%]">
+      <div className="grid grid-cols-4 gap-4 px-10 py-4 w-[100%] max-sm:grid-cols-1 max-xl:grid-cols-2">
         {menus?.map((menu) => {
           return (
             <div
               key={menu.id}
-              className="flex flex-col items-start justify-between p-4 rounded-lg cursor-pointer h-[100px]"
+              className="flex flex-col items-start justify-between  p-4 rounded-lg cursor-pointer h-[100px]"
               style={{ backgroundColor: menu.bgColor }}
               onClick={() => {
                 setSelected(menu);
@@ -67,7 +67,7 @@ const MenuContainer = () => {
               }}
             >
               <div className="flex items-center justify-between w-full">
-                <h1 className="text-[#f5f5f5] text-lg font-semibold">
+                <h1 className="text-[#f5f5f5] text-lg  font-semibold">
                   {menu.icon} {menu.name}
                 </h1>
                 {selected.id === menu.id && (
@@ -84,7 +84,7 @@ const MenuContainer = () => {
 
       <hr className="border-[#2a2a2a] border-t-2 mt-4" />
 
-      <div className="grid grid-cols-4 gap-4 px-10 py-4 w-[100%]">
+      <div className="grid grid-cols-4 gap-4 max-sm:grid-cols-1 max-lg:grid-cols-2 px-10 py-4 w-[100%]">
         {selected?.items?.map((item) => {
           return (
             <div
@@ -92,7 +92,7 @@ const MenuContainer = () => {
               className="flex flex-col items-start justify-between p-4 rounded-lg cursor-pointer h-[140px] hover:bg-[#2a2a2a] bg-[#050505]"
             >
               <div className="flex justify-between items-start w-full ">
-                <h1 className="text-[#f5f5f5] text-lg font-semibold">
+                <h1 className="text-[#f5f5f5] text-lg  font-semibold">
                   {item.icon} {item.name}
                 </h1>
                 <button 
