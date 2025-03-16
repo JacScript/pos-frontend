@@ -6,7 +6,7 @@ const RecentOrders = () => {
   return (
 
     <div className='px-8 mt-6'>
-       <div className='bg-[#050505] w-full h-[380px] rounded-lg'>
+       <div className='bg-[#050505] w-full h-[500px] rounded-lg'>
            <div className='flex justify-between items-center px-6 py-4'>
                 <h1 className='text-base text-[#f5f5f5] font-semibold tracking-wide'>Recent Orders</h1>
                 <a href='#' className='text-[#025cca] text-sm'>View All</a>
@@ -24,7 +24,7 @@ const RecentOrders = () => {
                  </div>
 
                  {/* Order List */}
-                 <div className='px-6 mt-4 overflow-y-scroll h-[250px] scrollbar-hide'>
+                 <div className='px-6 mt-4 overflow-y-scroll h-[380px] scrollbar-hide'>
                  <OrderList />
                  <OrderList />
                  <OrderList />
