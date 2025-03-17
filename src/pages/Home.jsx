@@ -8,6 +8,8 @@ import RecentOrders from "../components/home/RecentOrders";
 import PopularDishes from "../components/home/PopularDishes";
 
 const Home = () => {
+   
+
   return (
     <section className="bg-[#1f1f1f] max-md:min-h-screen lg:h-[calc(100vh-5rem)] md:overflow-hidden scrollbar-hide flex  max-lg:flex-col gap-3 "  >
       {/* left-div */}

@@ -9,6 +9,7 @@ import Tables from './pages/Tables.jsx';
 import Menu from './pages/Menu.jsx';
 import NotFound from './pages/NotFound.jsx';
 
+
 /**
  * This component handles all the routing logic and conditionally hides the Header.
  * It must be used inside <BrowserRouter> because it uses React Router hooks.

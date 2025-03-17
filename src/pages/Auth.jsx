@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import backimg from "../assets/images/restaurant-img.jpg";
 import logo from "../assets/images/logo.png";
-
+import { useMutation } from "@tanstack/react-query";
+import { login } from "../https/index";
+import { enqueueSnackbar } from "notistack";
+import { useHistory} from "react-router-dom"
+import { useDispatch} from "react-redux";
+import { setUser } from "../redux/slices/userSlice";
 const Auth = () => {
+   const dispatch = useDispatch()
+   const history = useHistory();
    const [formData , setFormData ] = useState({
     phoneNumber : '',
     password : ''
@@ -15,8 +22,24 @@ const Auth = () => {
 
    const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
+    loginMutation.mutate(formData); 
    }
+
+   const loginMutation = useMutation({
+    mutationFn: (reqData) => login(reqData),
+    onSuccess: (res) => {
+      const {data } = res;
+      console.log(data);
+      const {_id, username, phoneNumber, role, status,img } = data.data;
+      dispatch(setUser({_id, username, phoneNumber, role, status,img }))
+      enqueueSnackbar(data.message, { variant: "success" });
+      history.push("/")
+    },
+    onError: (error) => {
+       const { response } = error;
+       enqueueSnackbar(response.data.message, { variant: "error" });
+    },
+   })
 
 
   return (
@@ -29,7 +52,7 @@ const Auth = () => {
       <form>
         <div className="h-[350px] w-[400px] bg-black bg-opacity-75 p-6 rounded-lg shadow-lg flex flex-col items-center">
           <div className="flex flex-col justify-center items-center mb-1">
-            <img src={logo} alt="logo" className="w-10 h-10 rounded-full" />
+            <img src={logo} alt="logo" className="w-10 h-10 rounded-full border border-white" />
 
             <h1 className="text-white text-2xl font-semibold mb-2">LOG IN</h1>
           </div>
@@ -39,6 +62,7 @@ const Auth = () => {
               <label className="text-[#f5f5f5] mb-9">Enter your number:</label>
               <input
                 // value={}
+                onChange={handleChange}
                 required
                 name="phoneNumber"
                 type="number"
@@ -49,6 +73,7 @@ const Auth = () => {
             <div>
               <label className="text-[#f5f5f5] mb-1">Enter your password:</label>
               <input
+              onChange={handleChange}
               required
               name="password"
                 type="password"
@@ -56,7 +81,9 @@ const Auth = () => {
                 className="p-2 rounded-md outline-none border w-full border-gray-300 focus:border-white"
               />
             </div>
-            <button className="bg-[#f6b100] text-white p-2 uppercase font-extrabold rounded-md mt-5">
+            <button 
+             onClick={handleSubmit}
+            className="bg-[#f6b100] text-white p-2 uppercase font-extrabold rounded-md mt-5">
               Log In
             </button>
           </div>
@@ -65,5 +92,6 @@ const Auth = () => {
     </section>
   );
 };
+
 
 export default Auth;

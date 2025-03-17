@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Greetings = () => {
+  const userInfo =  useSelector(state => state.user);
   const [dateTime, setDateTime] = useState(new Date());
 
   useEffect(() => {
@@ -16,6 +18,18 @@ const Greetings = () => {
     return `${months[date.getMonth()]} ${String(date.getDate()).padStart(2, "0")}, ${date.getFullYear()}`;
   };
 
+  const getGreeting = () => {
+    const hour = new Date().getHours(); // Get current hour (0-23)
+  
+    if (hour < 12) {
+      return "Good Morning";
+    } else if (hour < 18) {
+      return "Good Afternoon";
+    } else {
+      return "Good Evening";
+    }
+  };
+
   const formatTime = (date) => 
     `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}:${String(date.getSeconds()).padStart(2, "0")}`;
 
@@ -23,7 +37,7 @@ const Greetings = () => {
     <div className="flex justify-between items-center px-8 mt-5">
       <div>
         <h1 className="text-[#f5f5f5] text-2xl max-md:text-base mb-2 font-semibold tracking-wide">
-          Good Morning, Miles
+        {getGreeting()}, {userInfo.username || "TEST USER"}
         </h1>
         <p className="text-[#ababab] text-sm">
           Give your best services for customers
