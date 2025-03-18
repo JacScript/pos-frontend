@@ -27,7 +27,6 @@ const Header = () => {
       console.log(data);
       dispatch(removeUser());
             enqueueSnackbar(data.message, { variant: "success" });
-      history.push("/auth");
     },
     onError : (error) => {
       console.log(error);
@@ -36,6 +35,7 @@ const Header = () => {
 
   const handleLogout = () => {
      logoutMutation.mutate();
+     history.push("/auth");
   }
 
 
