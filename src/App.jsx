@@ -1,27 +1,45 @@
-import { BrowserRouter, Route, Switch, useLocation, useHistory } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  useLocation,
+  Redirect,
+} from "react-router-dom";
+import { useSelector } from "react-redux";
 import Home from "./pages/Home.jsx";
 import Auth from "./pages/Auth.jsx";
-import './App.css';
-import Header from './components/shared/Header.jsx';
-import Orders from './pages/Orders.jsx';
-import Tables from './pages/Tables.jsx';
-import Menu from './pages/Menu.jsx';
-import NotFound from './pages/NotFound.jsx';
-import { useSelector } from 'react-redux';
+import "./App.css";
+import Header from "./components/shared/Header.jsx";
+import Orders from "./pages/Orders.jsx";
+import Tables from "./pages/Tables.jsx";
+import Menu from "./pages/Menu.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import useLoadData from "./hooks/useLoadData.js";
+import FullScreenLoad from "./components/shared/FullScreenLoad.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 /**
- * ProtectedRoute component to restrict access to authenticated users
+ * ProtectedRoute component to restrict access to authenticated users.
  */
 function ProtectedRoute({ children }) {
-  const { isAuth } = useSelector(state => state.user);
-  const history = useHistory();
+  const isLoading = useLoadData();
+  const { isAuth } = useSelector((state) => state.user);
 
-  if (!isAuth) {
-    history.push("/auth"); // Redirect to login page if not authenticated
-    return null; // Prevent rendering protected content
-  }
+  if (isLoading) return <FullScreenLoad />; // Show loading while authentication is being checked
 
-  return children;
+  return isAuth ? children : <Redirect to="/auth" />;
+}
+
+/**
+ * PublicRoute component to prevent logged-in users from accessing `/auth`
+ */
+function PublicRoute({ children }) {
+  const isLoading = useLoadData();
+  const { isAuth } = useSelector((state) => state.user);
+
+  if (isLoading) return <FullScreenLoad />; // Prevent redirection before auth state is loaded
+
+  return isAuth ? <Redirect to="/" /> : children;
 }
 
 /**
@@ -29,22 +47,25 @@ function ProtectedRoute({ children }) {
  */
 function AppContent() {
   const location = useLocation();
-  
+
   // Define routes where the header should be hidden
-  const hideHeaderRoutes = ['/auth'];
+  const hideHeaderRoutes = ["/auth"];
 
   return (
     <>
       {/* Show Header only if the current route is NOT in hideHeaderRoutes */}
       {!hideHeaderRoutes.includes(location.pathname) && <Header />}
-      
-      <Switch>
-        {/* <Route exact path="/" component={Home} /> */}
-        <Route path="/auth" component={Auth} />
-        
-        {/* Protected Routes */}
 
-        <Route path="/">
+      <Switch>
+        {/* Public Route - Redirect logged-in users away from "/auth" */}
+        <Route exact path="/auth">
+          <PublicRoute>
+            <Auth />
+          </PublicRoute>
+        </Route>
+
+        {/* Protected Routes */}
+        <Route exact path="/">
           <ProtectedRoute>
             <Home />
           </ProtectedRoute>
@@ -65,6 +86,12 @@ function AppContent() {
         <Route path="/menu">
           <ProtectedRoute>
             <Menu />
+          </ProtectedRoute>
+        </Route>
+
+        <Route path="/dashboard">
+          <ProtectedRoute>
+            <Dashboard />
           </ProtectedRoute>
         </Route>
 

@@ -29,7 +29,6 @@ const Auth = () => {
     mutationFn: (reqData) => login(reqData),
     onSuccess: (res) => {
       const {data } = res;
-      console.log(data);
       const {_id, username, phoneNumber, role, status,img } = data.data;
       dispatch(setUser({_id, username, phoneNumber, role, status,img }))
       enqueueSnackbar(data.message, { variant: "success" });
