@@ -40,10 +40,11 @@
 // export default TableCard;
 
 import React from "react";
-import { getBgColor } from "../../utils/index"; // Ensure correct import path
+import { getAvatarName, getBgColor } from "../../utils/index"; // Ensure correct import path
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateTable } from "../../redux/slices/customerSlice";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 const TableCard = ({ name, initials, status, seats }) => {
   const history = useHistory();
@@ -61,7 +62,7 @@ const TableCard = ({ name, initials, status, seats }) => {
       className="w-[300px] bg-[#050505] p-4 rounded-lg mb-4 hover:bg-[#1f1f1f] cursor-pointer"
     >
       <div className="flex justify-between items-center px-1">
-        <h1 className="text-[#f5f5f5] font-semibold text-xl">{name}</h1>
+        <h1 className="text-[#f5f5f5] font-semibold text-xl">Table <FaLongArrowAltRight className="text-[#ababab] ml-2 inline "/> {name}</h1>
         <p
           className={`${
             status === "Booked"
@@ -75,9 +76,9 @@ const TableCard = ({ name, initials, status, seats }) => {
       <div className="flex items-center justify-center my-4">
         <h1
           className={` text-white rounded-full p-5 text-2xl`}
-          style={{ background: getBgColor() }}
+          style={{ background: initials ? getBgColor() : "#1f1f1f"}}
         >
-          {initials}
+          {getAvatarName(initials) || "N/A"}
         </h1>
       </div>
       <div className="text-[#f5f5f5] flex justify-between items-center">

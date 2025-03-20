@@ -14,4 +14,6 @@ export const login = (data) => api.post("/auth/login", data);
 export const logout = () => api.post("/auth/logout");
 // exports const register = (data) => api.post("/auth/register", data);
 export const getUserData = () =>  api.get("/user");
+export const addTable = (data) => api.post("/table", data);
+export const getTables = () => api.get("/table");
 

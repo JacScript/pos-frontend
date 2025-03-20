@@ -29,7 +29,7 @@ export const getBgColor = () => {
 };
 
 export const getAvatarName = (name) => {
-  if(!name) return "CN";
+  if(!name) return "N/A";
 
   return name.split(" ").map(word => word[0]).join("").toUpperCase();
 } 
