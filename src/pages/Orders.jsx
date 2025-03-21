@@ -2,10 +2,24 @@ import React, { useState } from "react";
 import BottomNav from "../components/shared/BottomNav";
 import OrderCard from "../components/orders/OrderCard";
 import BackButton from "../components/shared/BackButton";
+import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { getOrders } from "../https";
 
 const Orders = () => {
   
   const [status, setStatus] = useState("all");
+
+  const {data: resData, isError} = useQuery({
+       queryKey: ["orders"],
+       queryFn : async () => {
+        return await getOrders()
+       },
+       placeholderData: keepPreviousData
+  })
+
+  if(isError){
+      enqueueSnackbar("Something went wrong!!", {variant: "error"})
+  } 
 
   return (
     <section className="bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden">
@@ -32,19 +46,28 @@ const Orders = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6 px-12 py-4 overflow-y-scroll h-[calc(80vh-5rem)] scrollbar-hide">
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
-      </div>
+      {/* <div className="flex flex-wrap justify-center gap-6 px-12 py-4 overflow-y-scroll h-[calc(80vh-5rem)] scrollbar-hide">
+       {
+        resData?.data.data.length > 0 ? (
+          resData.data.data.map((order) => {
+            retrun (
+              <OrderCard key={order._id}/>
+            )
+          })
+        )
+       }
+      
+      </div> */}
+      <div className="flex flex-wrap justify-center gap-6 px-12 py-4 overflow-y-scroll  scrollbar-hide">
+  {resData?.data?.data?.length > 0 ? (
+    resData.data.data.map((order) => (
+      <OrderCard key={order._id} order={order} />
+    ))
+  ) : (
+    <p className=" col-span-3 text-gray-500">No orders found.</p>
+  )}
+</div>
+
       <BottomNav />
     </section>
   );

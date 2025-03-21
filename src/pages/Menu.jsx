@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import BottomNav from "../components/shared/BottomNav";
 import BackButton from "../components/shared/BackButton";
 import { MdRestaurantMenu } from "react-icons/md";
@@ -11,8 +11,6 @@ import { useSelector } from "react-redux";
 const Menu = () => {
 
   const customerInfo = useSelector(state => state.customer);
-
-
 
   return (
     <section className="bg-[#1f1f1f] max-xl:min-h-screen xl:h-[calc(100vh-5rem)] flex max-xl:flex-col gap-3 ">
@@ -33,7 +31,7 @@ const Menu = () => {
                   {customerInfo?.customerName || "Customer Name"}
                 </h1>
                 <p className="text-xs text-[#ababab] font-medium">
-                  {customerInfo?.tableNo || "Table #"}
+                  {customerInfo?.table?.tableNo || "Table #"}
                 </p>
               </div>
             </div>
