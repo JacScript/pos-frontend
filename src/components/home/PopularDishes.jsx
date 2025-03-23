@@ -1,7 +1,25 @@
 import React from "react";
 import { popularDishes } from "../../constants";
+import { getOrders } from "../../https";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { enqueueSnackbar} from "notistack"
 
 const PopularDishes = () => {
+
+
+  const {data: resData, isError} = useQuery({
+    queryKey: ["orders"],
+    queryFn : async () => {
+     return await getOrders()
+    },
+    placeholderData: keepPreviousData
+})
+
+if(isError){
+   enqueueSnackbar("Something went wrong!!", {variant: "error"})
+} 
+
+
   return (
     <div className="mt-6 px-4">
       <div className="bg-[#050505]  w-full rounded-lg">

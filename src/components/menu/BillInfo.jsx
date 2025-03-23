@@ -5,7 +5,8 @@ import { getTotalPrice, removeAllItems } from "../../redux/slices/cartSlice";
 import { useMutation } from "@tanstack/react-query";
 import {createOrder, updateTable  } from "../../https/index"
 import { enqueueSnackbar } from "notistack";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
+import Invoice from "../invoice/Invoice";
 
 const BillInfo = () => {
   const cartInfo = useSelector((state) => state.cart);
@@ -21,6 +22,7 @@ const BillInfo = () => {
   // console.log(customerData);
 
   const [selectedPayment, setSelectedPayment] = useState(null);
+  const [showInvoice, setSelectedInvoice] = useState(false);
 
   const handlePaymentSelection = (paymentMethod) => {
     setSelectedPayment(paymentMethod);
@@ -65,7 +67,7 @@ const BillInfo = () => {
       }, 1500)
 
       enqueueSnackbar("Order Created!", {variant: "success"});
-      history.push("/orders")
+      // history.push("/orders")
     },
     onError: (error) => {
        const { response } = error;
@@ -85,7 +87,7 @@ const BillInfo = () => {
 
 
   const handlePlaceOrder = async () => {
-    if (cartInfo.length === 0) {
+    if (cartInfo?.length === 0) {
       enqueueSnackbar("Your cart is empty! Please add items before placing an order.", { variant: "error" });
       // alert("Your cart is empty! Please add items before placing an order.");
       return;
@@ -189,6 +191,7 @@ const BillInfo = () => {
           Print Receipt
         </button>
         <button
+        // onClick={handlePlaceOrder}
           className={`px-4 py-3 w-full rounded-lg text-[#f5f5f5] font-semibold 
             ${cartInfo?.length === 0 ? "bg-gray-600 cursor-not-allowed" : "bg-[#f6b100]"}`}
           disabled={cartInfo?.length === 0} // Disable if cart is empty
@@ -196,6 +199,11 @@ const BillInfo = () => {
           Place Order
         </button>
       </div>
+      {showInvoice && (
+        <Invoice orderInfo={orderInfo} setShowInvoice={setShowInvoice} />
+      )
+
+      }
     </>
   );
 };
