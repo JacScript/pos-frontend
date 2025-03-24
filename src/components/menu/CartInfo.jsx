@@ -19,7 +19,7 @@ const CartInfo = () => {
   }, [cartInfo.length]); // Ensure effect runs when cart length changes
 
   const handleRemoveItem = (itemId) => {
-    dispatch(removeItem(itemId));
+    dispatch(removeItem(itemId)); 
   };
 
   return (

@@ -97,37 +97,37 @@ export const tables = [
 export const startersItem = [
     {
       id: 1,
-      name: "Paneer Tikka",
-      price: 250,
-      category: "Vegetarian"
+      name: "Bread",
+      price: 500,
+      category: "Non-Vegetarian"
     },
     {
       id: 2,
-      name: "Chicken Tikka",
+      name: "Chapati",
       price: 300,
       category: "Non-Vegetarian"
     },
     {
       id: 3,
-      name: "Tandoori Chicken",
+      name: "Mihogo",
       price: 350,
       category: "Non-Vegetarian"
     },
     {
       id: 4,
-      name: "Samosa",
+      name: "Maandazi",
       price: 100,
-      category: "Vegetarian"
+      category: "Non-Vegetarian"
     },
     {
       id: 5,
-      name: "Aloo Tikki",
+      name: "Viazi vitamu",
       price: 120,
-      category: "Vegetarian"
+      category: "Non-Vegetarian"
     },
     {
       id: 6,
-      name: "Hara Bhara Kebab",
+      name: "Half Cake",
       price: 220,
       category: "Vegetarian"
     }
@@ -136,38 +136,50 @@ export const startersItem = [
 export const mainCourse = [
   {
     id: 1,
-    name: "Butter Chicken",
-    price: 400,
+    name: "Ugali & Nyama Roast",
+    price: 4000,
     category: "Non-Vegetarian"
   },
   {
     id: 2,
-    name: "Paneer Butter Masala",
-    price: 350,
+    name: "Ugali $ Nyama Kavu",
+    price: 3500,
     category: "Vegetarian"
   },
   {
     id: 3,
-    name: "Chicken Biryani",
-    price: 450,
+    name: "Pilau Maharage",
+    price: 4500,
     category: "Non-Vegetarian"
   },
   {
     id: 4,
-    name: "Dal Makhani",
-    price: 180,
+    name: "Pilau & Nyama Kavu",
+    price: 3500,
     category: "Vegetarian"
   },
   {
     id: 5,
-    name: "Kadai Paneer",
-    price: 300,
+    name: "Pilau & Nyama Roast",
+    price: 3000,
     category: "Vegetarian"
   },
   {
     id: 6,
-    name: "Rogan Josh",
-    price: 500,
+    name: "Wali Samaki",
+    price: 5000,
+    category: "Non-Vegetarian"
+  },
+  {
+    id: 7,
+    name: "Wali Kuku",
+    price: 5000,
+    category: "Non-Vegetarian"
+  },
+  {
+    id: 8,
+    name: "Wali Samaki",
+    price: 5000,
     category: "Non-Vegetarian"
   }
 ];
@@ -175,8 +187,8 @@ export const mainCourse = [
 export const beverages = [
   {
     id: 1,
-    name: "Masala Chai",
-    price: 50,
+    name: "Chai ya Rangi",
+    price: 300,
     category: "Hot"
   },
   {
@@ -214,7 +226,7 @@ export const beverages = [
 export const soups = [
   {
     id: 1,
-    name: "Tomato Soup",
+    name: "Tomato Sou",
     price: 120,
     category: "Vegetarian"
   },

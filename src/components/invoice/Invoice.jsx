@@ -101,13 +101,13 @@ const Invoice = ({ orderInfo, setShowInvoice }) => {
 
           <div className="mt-4 border-t pt-4 text-sm">
             <p>
-              <strong>Subtotal:</strong> ₹{orderInfo.bills.total.toFixed(2)}
+              <strong>Subtotal:</strong> Tsh {orderInfo.bills.total.toFixed(2)}
             </p>
             <p>
-              <strong>Tax:</strong> ₹{orderInfo.bills.tax.toFixed(2)}
+              <strong>Tax:</strong> Tsh {orderInfo.bills.tax.toFixed(2)}
             </p>
             <p className="text-md font-semibold">
-              <strong>Grand Total:</strong> ₹
+              <strong>Grand Total:</strong> Tsh
               {orderInfo.bills.totalWithTax.toFixed(2)}
             </p>
           </div>
@@ -118,6 +118,7 @@ const Invoice = ({ orderInfo, setShowInvoice }) => {
           <p>
                 <strong>Payment Method:</strong> {orderInfo.paymentMethod}
               </p>
+              <h1 className="text-4xl flex items-center mt-4">#{orderInfo.orderNumber}</h1>
             {/* {
             orderInfo.paymentMethod === "Cash" ? (
               <p>

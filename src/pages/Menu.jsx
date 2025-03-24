@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BottomNav from "../components/shared/BottomNav";
 import BackButton from "../components/shared/BackButton";
 import { MdRestaurantMenu } from "react-icons/md";
@@ -7,8 +7,39 @@ import CustomerInfo from "../components/menu/CustomerInfo";
 import CartInfo from "../components/menu/CartInfo";
 import BillInfo from "../components/menu/BillInfo";
 import { useSelector } from "react-redux";
+import { getUserData } from "../https/index";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { enqueueSnackbar } from "notistack";
 
 const Menu = () => {
+
+  useEffect(() => {
+    document.title = "POS | Orders"
+  })
+
+
+  const { data: resData, isError } = useQuery({
+    queryKey: ["user"],
+    queryFn: getUserData, // No need for `async () => await`
+    placeholderData: keepPreviousData
+  });
+  
+  // const {data: resData, isError} = useQuery({
+  //      queryKey: ["user"],
+  //      queryFn : async () => {
+  //       return await getUserData()
+  //      },
+  //      placeholderData: keepPreviousData
+  // },[])
+
+  if(isError){
+      enqueueSnackbar("Something went wrong!!", {variant: "error"})
+  } 
+
+  // const menuData = resData?.data.data;
+
+  // console.log(menuData)
+  // console.log(resData.data.data)
 
   const customerInfo = useSelector(state => state.customer);
 
@@ -39,14 +70,15 @@ const Menu = () => {
         </div>
 
         <div>
-          <MenuContainer />
+          <MenuContainer menuData={resData} />
+          {/* <MenuContainer menuData={resData?.data?.data || []} /> */}
         </div>
       </div>
 
       {/* right-div */}
       <div className="flex-[1] bg-[#1a1a1a]  mr-3 h-[650px] max-md:rounded-lg rounded-b-lg pt-2 max-xl:mb-[80px]">
         {/* Customer info */}
-        <CustomerInfo/>
+        <CustomerInfo />
 
         <hr className="border-[#2a2a2a] border-t-2" />
         {/* Cart Items */}

@@ -22,7 +22,9 @@ const BillInfo = () => {
   // console.log(customerData);
 
   const [selectedPayment, setSelectedPayment] = useState(null);
-  const [showInvoice, setSelectedInvoice] = useState(false);
+  // const [showInvoice, setSelectedInvoice] = useState(false);
+  const [showInvoice, setShowInvoice] = useState(false);
+  const [orderInfo, setOrderInfo] = useState();
 
   const handlePaymentSelection = (paymentMethod) => {
     setSelectedPayment(paymentMethod);
@@ -51,9 +53,10 @@ const BillInfo = () => {
     onSuccess: (resData) => {
       const { data} = resData.data;
       // const res = data;
-      // console.log(res);
+      console.log(data);
       
 
+      setOrderInfo(data)
 
       //UPDATE TABLE
       const tableData = {
@@ -65,14 +68,15 @@ const BillInfo = () => {
       setTimeout(() => {
           tableUpdateMutation.mutate(tableData);
       }, 1500)
-
+      
+      setShowInvoice(true)
       enqueueSnackbar("Order Created!", {variant: "success"});
       // history.push("/orders")
     },
     onError: (error) => {
        const { response } = error;
              enqueueSnackbar(response.data.message, { variant: "error" });
-      // return console.error("Order error:", error);
+      return console.log("Order error:", error);
       // alert("Failed to place order. Please try again.");
     },
   });
@@ -151,6 +155,7 @@ const BillInfo = () => {
         <h1 className="text-md font-bold text-[#f5f5f5]">
           Tsh {tax.toFixed(2)}
         </h1>
+
       </div>
       <div className="flex items-center justify-between px-5 mt-1">
         <p className="text-xs text-[#ababab] font-medium mt-1">

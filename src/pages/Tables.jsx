@@ -9,7 +9,7 @@ import { getTables } from "../https";
 const Tables = () => {
   const [status, setStatus] = useState("all");
 
-  const { data:resData, isError} = useQuery({
+  const { data: resData, isError } = useQuery({
     queryKey: ["tables"],
     queryFn: async () => {
       return await getTables();
@@ -17,8 +17,8 @@ const Tables = () => {
     placeholderData: keepPreviousData,
   });
 
-  if(isError){
-      enqueueSnackbar("Something went wrong!", {variant: error})
+  if (isError) {
+    enqueueSnackbar("Something went wrong!", { variant: error });
   }
 
   // console.log(resData);
@@ -53,14 +53,18 @@ const Tables = () => {
         </div>
       </div>
       <div className="flex flex-wrap gap-4 p-10 justify-center overflow-y-scroll h-[calc(80vh-5rem)] scrollbar-hide">
-        {
-          resData?.data?.data?.map((table) => {
-            return (
-              <TableCard  key={table._id} id={table._id} name={table.tableNo} status={table.status} initials={table?.currentOrder?.customerDetails.name} seats={table.seats}/>
-            )
-          })
-        }
-        
+        {resData?.data?.data?.map((table) => {
+          return (
+            <TableCard
+              key={table._id}
+              id={table._id}
+              name={table.tableNo}
+              status={table.status}
+              initials={table?.currentOrder?.customerDetails.name}
+              seats={table.seats}
+            />
+          );
+        })}
       </div>
 
       <BottomNav />
