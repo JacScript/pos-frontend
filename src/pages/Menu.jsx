@@ -14,7 +14,7 @@ import { enqueueSnackbar } from "notistack";
 const Menu = () => {
 
   useEffect(() => {
-    document.title = "POS | Orders"
+    document.title = "POS | Menu"
   })
 
 

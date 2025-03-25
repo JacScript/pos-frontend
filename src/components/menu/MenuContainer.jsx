@@ -141,19 +141,25 @@ import { GrRadialSelected } from "react-icons/gr";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addItems } from "../../redux/slices/cartSlice";
+import { menus } from "../../constants";
 
 const MenuContainer = ({ menuData }) => {
   // console.log(menuData?.data?.data); // Check the structure of menuData
+  // console.log(menus)
+  // console.log(menuData?.data?.data?.menus); // Check the structure of menuData
   const [selected, setSelected] = useState(menuData?.data?.data?.menus?.[0] || {});
   const [itemCount, setItemCount] = useState(0);
+  const [itemId, setItemId] = useState(0);
   const dispatch = useDispatch();
 
   const increment = (id) => {
+    setItemId(id);
     if (itemCount >= 6) return; // Limit to 6 items max
     setItemCount((prev) => prev + 1);
   };
 
   const decrement = (id) => {
+    setItemId(id);
     if (itemCount <= 0) return;
     setItemCount((prev) => prev - 1);
   };
@@ -180,11 +186,12 @@ const MenuContainer = ({ menuData }) => {
         {menuData?.data?.data?.menus?.map((menu) => {
           return (
             <div
-              key={menu.id}
+              key={menu._id}
               className="flex flex-col items-start justify-between p-4 rounded-lg cursor-pointer h-[100px]"
               style={{ backgroundColor: menu.bgColor }}
               onClick={() => {
                 setSelected(menu);
+                setItemId(0); // Reset item ID when a new menu is selected
                 setItemCount(0); // Reset item count when a new menu is selected
               }}
             >
@@ -192,7 +199,7 @@ const MenuContainer = ({ menuData }) => {
                 <h1 className="text-[#f5f5f5] text-lg font-semibold">
                   {menu.icon} {menu.name}
                 </h1>
-                {selected.id === menu.id && (
+                {selected._id === menu._id && (
                   <GrRadialSelected className="text-[#f5f5f5] text-2xl" />
                 )}
               </div>
@@ -210,7 +217,7 @@ const MenuContainer = ({ menuData }) => {
         {selected?.items?.map((item) => {
           return (
             <div
-              key={item.id}
+              key={item._id}
               className="flex flex-col items-start justify-between p-4 rounded-lg cursor-pointer h-[140px] hover:bg-[#2a2a2a] bg-[#050505]"
             >
               <div className="flex justify-between items-start w-full ">
@@ -230,14 +237,17 @@ const MenuContainer = ({ menuData }) => {
                 </p>
                 <div className="flex items-center justify-between bg-[#1f1f1f] px-3 gap-6 py-1 rounded-lg">
                   <button
-                    onClick={() => decrement(item.id)}
+                    onClick={() => decrement(item._id)}
                     className="text-yellow-500 text-2xl font-bold"
                   >
                     &minus;
                   </button>
-                  <span className="text-white">{itemCount}</span>
+                  {/* <span className="text-white">{itemCount}</span> */}
+                  <span className="text-white">
+                   {item._id === itemId ? itemCount : "0"}
+                   </span>
                   <button
-                    onClick={() => increment(item.id)}
+                    onClick={() => increment(item._id)}
                     className="text-yellow-500 text-2xl font-bold"
                   >
                     &#43;

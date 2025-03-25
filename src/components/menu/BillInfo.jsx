@@ -53,7 +53,7 @@ const BillInfo = () => {
     onSuccess: (resData) => {
       const { data} = resData.data;
       // const res = data;
-      console.log(data);
+      // console.log(data);
       
 
       setOrderInfo(data)
@@ -178,7 +178,7 @@ const BillInfo = () => {
                   ? "bg-indigo-700 text-white"
                   : "bg-[#050505] text-[#ababab]"
               }`}
-            disabled={cartInfo.length === 0} // Disable if cart is empty
+            disabled={cartInfo.length === 0} // Disable if cart is empty 
           >
             {paymentMethod}
           </button>
