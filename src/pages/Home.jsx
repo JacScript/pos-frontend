@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ButtomNav from "../components/shared/BottomNav";
 import Greetings from "../components/home/Greetings";
 import {BsCashCoin} from 'react-icons/bs'
@@ -8,6 +8,10 @@ import RecentOrders from "../components/home/RecentOrders";
 import PopularDishes from "../components/home/PopularDishes";
 
 const Home = () => {
+
+   useEffect(() => {
+      document.title = "POS | Home"
+    })
    
 
   return (

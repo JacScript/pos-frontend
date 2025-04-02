@@ -8,7 +8,7 @@ const OrderList = ({id, order}) => {
       <button className="text-center max-md:p-1 p-3 bg-[#f6b100] text-xl max-md:text-base fonr-bold rounded-lg">
         {getAvatarName(order.customerDetails.name)}
       </button>
-      <div className="flex justify-between items-center w-[100%] ">
+      <div className="flex justify-between items-center w-[100%] flex-2">
         <div className="flex flex-col items-start gap-1 max-md:gap-[2px]">
           <h1 className="text-[#f5f5f5] text-lg max-md:text-base font-semibold tracking-wide ">
             {order.customerDetails.name}
@@ -16,11 +16,11 @@ const OrderList = ({id, order}) => {
           <p className="text-[#ababab] text-sm">{order.items.length} Items</p>
         </div>
 
-            <div>
+            <div className="flex-3">
                 <h1 className="text-[#f6b100] text-semibold max-md:text-xs border border-[#f6b100] p-1 rounded-lg">Table No: {order.table.tableNo}</h1>
             </div>
 
-        <div className="flex flex-col items-end gap-2 max-md:gap-[4px]">
+        <div className="flex flex-col flex-2 items-end gap-2 max-md:gap-[4px]">
           {/* <p className="text-green-600 ">
             <FaCheckDouble className="inline mr-2" />
             Ready
